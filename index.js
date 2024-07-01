@@ -1,43 +1,46 @@
 const express = require('express');
-const path = require('path');
-const app = express();
-const PORT = process.env.PORT || 5000;
+const { json, urlencoded } = require("body-parser");
+const app = express()
+/*app.use(express.json());
+app.use(express.urlencoded({extended: true}));*/
+app.use(json({ limit: '10mb' }))
+app.use(urlencoded({ limit: '10mb', extended: true }))
+const port = process.env.PORT || 5000;
+require('dotenv').config();
+const nsrestlet = require('nsrestlet');
 
-app.use(express.static(path.join(__dirname + "/public")));
-
-app.post('/verificationCustomer', (req, res) => {
-
-    console.log("REQUEST: " + JSON.stringify(req.body));
-
-    res.send("ok" + req.body);
-
-    //var nsrestlet = require('nsrestlet');
- 
-    //For OAuth (we can do NLAuth too, see later in documentation):
-    /*var accountSettings = {
-        accountId: "9323217",
-        tokenKey: "5e39a16ee321f9fab4d635bc694decb02b470de42e13c362d5f0f9b8a6b8b471",
-        tokenSecret: "84dd7adcb9277ab4fca81c810db4f0862a712545c26b9a79d3af0c3cd4fc7da3",
-        consumerKey: "6909223765d68229f521ae5355031e937bc39ff684ce9a38ca644f8c9929bf1a",
-        consumerSecret: "97faf817b70724635ce207ee79480cb8f26b0ed0348a1e4bd03d23d8fb98054a" };
-    var urlSettings = {
-        url: 'https://9323217.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=385&deploy=1'
-    }
-    
-    //create a link
-    var myInvoices = nsrestlet.createLink(accountSettings, urlSettings);
-    
-    //then call get, post, put, or delete
-    myInvoices.get({id: '12345'}, function(error, body)
-    {
-        res.send(body);
-    });*/
-    
-});
-
-function consultarToken() {    
+var accountSettings = {
+    accountId: process.env.ACCOUNT_ID,
+    tokenKey: process.env.TOKEN_KEY,
+    tokenSecret: process.env.TOKEN_SECRET,
+    consumerKey: process.env.CONSUMER_KEY,
+    consumerSecret: process.env.CONSUMER_SECRET };
+var urlSettings = {
+    url: process.env.URL
 }
 
-app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}`)
-})
+var myInvoices = nsrestlet.createLink(accountSettings, urlSettings);
+
+app.post('/app/verificacion', (request, response) => {   
+    var ineFront = request.body.ineFront;
+    var ineBack = request.body.ineBack;
+    var selfie = request.body.selfie;
+
+    var bodySelfie = {
+        ineFront: ineFront,
+        ineBack: ineBack,
+        selfie: selfie
+    }    
+    
+    myInvoices.post(bodySelfie).then(function(body) {
+        response.send("RESPONSE: " + body);
+    })
+    .catch(function(error) {
+        console.log(error);
+    });
+
+});
+
+app.listen(process.env.PORT || 5000, () => {
+    console.log(`App listening on port ${port}`);
+});
