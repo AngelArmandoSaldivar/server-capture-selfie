@@ -6,6 +6,7 @@ app.use(express.urlencoded({extended: true}));*/
 app.use(json({ limit: '10mb' }))
 app.use(urlencoded({ limit: '10mb', extended: true }))
 const port = process.env.PORT || 5000;
+app.use(express.static(path.join(__dirname + "/public")));
 require('dotenv').config();
 const nsrestlet = require('nsrestlet');
 
