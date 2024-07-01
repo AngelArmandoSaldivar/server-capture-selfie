@@ -9,7 +9,7 @@ app.get('/verificationCustomer', (req, res) => {
 
     console.log("REQUEST: " + JSON.stringify(req.body));
 
-    res.send("ok");
+    res.send("ok" + req.body);
 
     //var nsrestlet = require('nsrestlet');
  
