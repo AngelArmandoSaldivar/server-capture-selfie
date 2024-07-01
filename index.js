@@ -5,12 +5,16 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.static(path.join(__dirname + "/public")));
 
-app.get('/getToken', (req, res) => {
+app.get('/verificationCustomer', (req, res) => {
 
-    var nsrestlet = require('nsrestlet');
+    console.log("REQUEST: " + JSON.stringify(req.body));
+
+    res.send("ok");
+
+    //var nsrestlet = require('nsrestlet');
  
     //For OAuth (we can do NLAuth too, see later in documentation):
-    var accountSettings = {
+    /*var accountSettings = {
         accountId: "9323217",
         tokenKey: "5e39a16ee321f9fab4d635bc694decb02b470de42e13c362d5f0f9b8a6b8b471",
         tokenSecret: "84dd7adcb9277ab4fca81c810db4f0862a712545c26b9a79d3af0c3cd4fc7da3",
@@ -21,19 +25,19 @@ app.get('/getToken', (req, res) => {
     }
     
     //create a link
-    var myInvoices = nsrestlet.createLink(accountSettings, urlSettings)
+    var myInvoices = nsrestlet.createLink(accountSettings, urlSettings);
     
     //then call get, post, put, or delete
     myInvoices.get({id: '12345'}, function(error, body)
     {
         res.send(body);
-    });    
+    });*/
     
-})
+});
 
 function consultarToken() {    
 }
 
 app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}`)
-  })
+})

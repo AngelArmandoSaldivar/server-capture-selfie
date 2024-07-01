@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",
+    "grpc": "1.24.11",
     "nsrestlet": "2.0.1"
   }
 }
