@@ -38,7 +38,7 @@ app.post('/app/verificacion', (request, response) => {
     console.log("BODY SELFIE: " + bodySelfie);
     
     myInvoices.post(bodySelfie).then(function(body) {
-        response.send("RESPONSE DATA: " + body);
+        response.send(body);
     })
     .catch(function(error) {
         console.log(error);
