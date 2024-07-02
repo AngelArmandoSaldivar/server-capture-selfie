@@ -33,10 +33,7 @@ app.post('/app/verificacion', (request, response) => {
         ineFront: ineFront,
         ineBack: ineBack,
         selfie: selfie
-    }    
-
-    response.send("RESPONSE: " + bodySelfie);
-    return;
+    }
 
     console.log("BODY SELFIE: " + bodySelfie);
     
