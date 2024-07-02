@@ -26,10 +26,10 @@ var myInvoices = nsrestlet.createLink(accountSettings, urlSettings);
 app.post('/app/verificacion', (request, response) => {
 
     myInvoices.post(request.body).then(function(body) {
-        response.send(body);
+        response.send("Response ok");
     })
     .catch(function(error) {
-        console.log(error);
+        console.log("ERROR: " + error);
     });
 
 });
