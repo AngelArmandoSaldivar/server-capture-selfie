@@ -25,8 +25,7 @@ var myInvoices = nsrestlet.createLink(accountSettings, urlSettings);
 
 app.post('/app/verificacion', (request, response) => {
 
-    myInvoices.post(request.body).then(function(body) {
-        response.send(body);
+    myInvoices.post(request.body).then(function(body) {        
         if(body != 'El customer fue registrado') {
             response.send("No Verificado");
         } else {
