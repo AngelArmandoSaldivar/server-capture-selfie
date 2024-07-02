@@ -23,10 +23,7 @@ var urlSettings = {
 
 var myInvoices = nsrestlet.createLink(accountSettings, urlSettings);
 
-app.post('/app/verificacion', (request, response) => {
-    
-    response.send("Entraste" + request);
-    return;
+app.post('/app/verificacion', (request, response) => {        
 
     var ineFront = request.body.ineFront;
     var ineBack = request.body.ineBack;
@@ -37,6 +34,9 @@ app.post('/app/verificacion', (request, response) => {
         ineBack: ineBack,
         selfie: selfie
     }    
+
+    response.send("RESPONSE: " + bodySelfie);
+    return;
 
     console.log("BODY SELFIE: " + bodySelfie);
     
