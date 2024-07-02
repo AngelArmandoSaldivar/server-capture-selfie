@@ -33,9 +33,7 @@ app.post('/app/verificacion', (request, response) => {
         ineFront: ineFront,
         ineBack: ineBack,
         selfie: selfie
-    }*/
-
-    console.log("BODY SELFIE: " + bodySelfie);
+    }*/    
     
     myInvoices.post(request.body).then(function(body) {
         response.send(body);
