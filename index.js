@@ -24,7 +24,7 @@ var urlSettings = {
 var myInvoices = nsrestlet.createLink(accountSettings, urlSettings);
 
 app.post('/app/verificacion', (request, response) => {
-
+        
     myInvoices.post(request.body).then(function(body) {
         response.send(body);
     })
@@ -32,6 +32,12 @@ app.post('/app/verificacion', (request, response) => {
         console.log("ERROR: " + error);
     });
 
+});
+
+app.get('/app/timeOut', (request, response) => {
+    setTimeout(() => {
+        response.send(true);
+    }, 10000);
 });
 
 app.listen(process.env.PORT || 5000, () => {
