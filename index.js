@@ -31,7 +31,6 @@ app.post('/app/verificacion', (request, response) => {
     .catch(function(error) {
         console.log("ERROR: " + JSON.stringify(error));
     });
-
 });
 
 app.get('/app/timeOut', (request, response) => {
