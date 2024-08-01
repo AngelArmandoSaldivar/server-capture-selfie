@@ -29,7 +29,7 @@ app.post('/app/verificacion', (request, response) => {
         response.send(body);
     })
     .catch(function(error) {
-        console.log("ERROR: " + error);
+        console.log("ERROR: " + JSON.stringify(error));
     });
 
 });
