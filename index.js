@@ -42,7 +42,7 @@ app.get('/app/timeOut', (request, response) => {
 app.get('/app/timeOut5', (request, response) => {
     setTimeout(() => {
         response.send(true);
-    }, 5000);
+    }, 3000);
 });
 
 app.listen(process.env.PORT || 5000, () => {
