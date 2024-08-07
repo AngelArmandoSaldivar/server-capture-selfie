@@ -39,6 +39,12 @@ app.get('/app/timeOut', (request, response) => {
     }, 10000);
 });
 
+app.get('/app/timeOut5', (request, response) => {
+    setTimeout(() => {
+        response.send(true);
+    }, 5000);
+});
+
 app.listen(process.env.PORT || 5000, () => {
     console.log(`App listening on port ${port}`);
 });
