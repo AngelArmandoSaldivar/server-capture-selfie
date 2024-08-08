@@ -38,6 +38,9 @@ app.post('/app/verificacion', (request, response) => {
 
 app.post('/app/getCustomer', (request, response) => {    
     setTimeout(() => {
+        console.log("*******REQUEST GET CUS************");
+        console.log("BODY GET CUS: " + request.body);
+        console.log("**********************************");
     myInvoices.get(request.body).then(function(res) {
         console.log("*********ENTRASTE A GET CUS***********");
         console.log(res);
