@@ -27,6 +27,8 @@ app.post('/app/verificacion', (request, response) => {
         
     myInvoices.post(request.body).then(function(body) {
         console.log("ENTRASTE A RESPONSEBODY**************");
+        console.log(body);
+        console.log("*********BODY****");
         response.send(body);
     })
     .catch(function(error) {
@@ -37,7 +39,9 @@ app.post('/app/verificacion', (request, response) => {
 app.post('/app/getCustomer', (request, response) => {    
     setTimeout(() => {
     myInvoices.get(request.body).then(function(res) {
-        console.log("ENTRASTE A GET CUS");
+        console.log("*********ENTRASTE A GET CUS***********");
+        console.log(res);
+        console.log("**************************************");
         if (res == 'Entraste') {
            return "Customer no verificado"
         } else {
