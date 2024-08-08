@@ -26,6 +26,7 @@ var myInvoices = nsrestlet.createLink(accountSettings, urlSettings);
 app.post('/app/verificacion', (request, response) => {
         
     myInvoices.post(request.body).then(function(body) {
+        console.log("ENTRASTE A RESPONSEBODY**************");
         response.send(body);
     })
     .catch(function(error) {
@@ -36,6 +37,7 @@ app.post('/app/verificacion', (request, response) => {
 app.post('/app/getCustomer', (request, response) => {    
     setTimeout(() => {
     myInvoices.get(request.body).then(function(res) {
+        console.log("ENTRASTE A GET CUS");
         if (res == 'Entraste') {
            return "Customer no verificado"
         } else {
