@@ -33,6 +33,34 @@ app.post('/app/verificacion', (request, response) => {
     });
 });
 
+app.post('/app/getCustomer', (request, response) => {    
+    setTimeout(() => {
+    myInvoices.get(request.body).then(function(res) {
+        response.send(res);
+
+        if (res == 'Entraste') {
+            setTimeout(() => {
+                myInvoices.get(request.body).then(function(res2) {
+                    response.send(res);
+            
+                    if (res == 'Entraste') {
+                        response.send("Aun no verificado");
+                    } else {
+                        response.send(res2);
+                    }
+                })
+            }, 6000);
+            
+        } else {
+            response.send(res);
+        }
+    })
+    .catch(function(error) {
+        console.log("ERROR: " + JSON.stringify(error));
+    });
+    }, 6000);    
+});
+
 app.get('/app/timeOut', (request, response) => {
     setTimeout(() => {
         response.send(true);
