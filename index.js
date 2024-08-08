@@ -36,11 +36,8 @@ app.post('/app/verificacion', (request, response) => {
 app.post('/app/getCustomer', (request, response) => {    
     setTimeout(() => {
     myInvoices.get(request.body).then(function(res) {
-        response.send(res);
-
         if (res == 'Entraste') {
            return "Customer no verificado"
-            
         } else {
             response.send(res);
         }
