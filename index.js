@@ -27,7 +27,7 @@ app.post('/app/verificacion', (request, response) => {
         
     myInvoices.post(request.body).then(function(body) {
         console.log("ENTRASTE A RESPONSEBODY**************");
-        console.log(body);
+        //console.log(body);
         console.log("*********BODY****");
         response.send(body);
     })
