@@ -39,17 +39,7 @@ app.post('/app/getCustomer', (request, response) => {
         response.send(res);
 
         if (res == 'Entraste') {
-            setTimeout(() => {
-                myInvoices.get(request.body).then(function(res2) {
-                    response.send(res);
-            
-                    if (res == 'Entraste') {
-                        response.send("Aun no verificado");
-                    } else {
-                        response.send(res2);
-                    }
-                })
-            }, 6000);
+           return "Customer no verificado"
             
         } else {
             response.send(res);
@@ -58,7 +48,7 @@ app.post('/app/getCustomer', (request, response) => {
     .catch(function(error) {
         console.log("ERROR: " + JSON.stringify(error));
     });
-    }, 6000);    
+    }, 10000);    
 });
 
 app.get('/app/timeOut', (request, response) => {
