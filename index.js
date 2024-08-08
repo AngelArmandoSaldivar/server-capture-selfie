@@ -36,7 +36,7 @@ app.post('/app/verificacion', (request, response) => {
 app.get('/app/timeOut', (request, response) => {
     setTimeout(() => {
         response.send(true);
-    }, 10000);
+    }, 6000);
 });
 
 app.get('/app/timeOut5', (request, response) => {
