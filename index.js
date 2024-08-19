@@ -54,7 +54,7 @@ app.post('/app/getCustomer', (request, response) => {
     .catch(function(error) {
         console.log("ERROR: " + JSON.stringify(error));
     });
-    }, 10000);
+    }, 5000);
 });
 
 app.get('/app/timeOut', (request, response) => {
