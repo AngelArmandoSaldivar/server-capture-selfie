@@ -43,18 +43,20 @@ app.post('/app/getCustomer', (request, response) => {
         console.log("**********************************");
     myInvoices.get(request.body).then(function(res) {
         console.log("*********ENTRASTE A GET CUS***********");
-        console.log(res);
-        console.log("**************************************");
-        if (res == 'Entraste') {
-           return "Customer no verificado"
+        res = JSON.parse(res);
+
+        if(!res.identifier) {            
+            response.status(204).send({message: "Customer no verificado"});
         } else {
-            response.send(res);
+            response.status(200).send(res);
         }
+
     })
     .catch(function(error) {
         console.log("ERROR: " + JSON.stringify(error));
+        response.status(500).send(error);       
     });
-    }, 5000);
+    }, 500);
 });
 
 app.get('/app/timeOut', (request, response) => {
