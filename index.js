@@ -36,22 +36,22 @@ app.post('/app/verificacion', (request, response) => {
     });
 });
 
-app.post('/app/getCustomer', (request, response) => {    
+app.post('/app/getCustomer', (request, response) => {
     setTimeout(() => {
         console.log("*******REQUEST GET CUS************");
         console.log("BODY GET CUS: " + request.body.uuid);
         console.log("**********************************");
-    myInvoices.get(request.body).then(function(res) {
-        console.log("*********ENTRASTE A GET CUS***********");
-        res = JSON.parse(res);
+        myInvoices.get(request.body).then(function(res) {
+            console.log("*********ENTRASTE A GET CUS***********");
+            res = JSON.parse(res);
 
-        if(!res.identifier) {            
-            response.status(204).send({message: "Customer no verificado"});
-        } else {
-            response.status(200).send(res);
-        }
+            if(!res.identifier) {
+                response.status(204).send({message: "Customer no verificado"});
+            } else {
+                response.status(200).send(res);
+            }
 
-    })
+        })
     .catch(function(error) {
         console.log("ERROR: " + JSON.stringify(error));
         response.status(500).send(error);       
