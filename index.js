@@ -2,6 +2,8 @@ const express = require('express');
 const { json, urlencoded } = require("body-parser");
 const path = require('path');
 const app = express()
+const cors = require('cors');
+app.use(cors());
 /*app.use(express.json());
 app.use(express.urlencoded({extended: true}));*/
 app.use(json({ limit: '10mb' }))
@@ -27,7 +29,7 @@ app.post('/app/verificacion', (request, response) => {
         
     myInvoices.post(request.body).then(function(body) {
         console.log("ENTRASTE A RESPONSEBODY**************");
-        //console.log(body);
+        console.log("BODY VERIFICACION: " + JSON.stringify(body));
         console.log("*********BODY****");
         response.send(body);
     })
@@ -42,6 +44,7 @@ app.post('/app/getCustomer', (request, response) => {
         console.log("BODY GET CUS: " + request.body.uuid);
         console.log("**********************************");
         myInvoices.get(request.body).then(function(res) {
+            console.log("RES: " + res);
             console.log("*********ENTRASTE A GET CUS***********");
             res = JSON.parse(res);
             if(!res.identifier) {
@@ -51,10 +54,10 @@ app.post('/app/getCustomer', (request, response) => {
             }
         })
     .catch(function(error) {
-        console.log("ERROR: " + JSON.stringify(error));
+        console.log("ERROR: " + error);
         response.status(500).send(error);
     });
-    }, 500);
+    }, 10000);
 });
 
 app.get('/app/timeOut', (request, response) => {
